@@ -48,6 +48,7 @@ public class DataPresenter extends HttpServlet {
             out.println("<title>Servlet DataPresenter</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println("<h1> Data from databases </h1>");
             
             try{
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
