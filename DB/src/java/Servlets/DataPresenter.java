@@ -14,10 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,6 +36,33 @@ public class DataPresenter extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+
+    private Object[][] ResultSetToArray(ResultSet rs) {
+
+        Object data[][]=null;
+
+        try{
+            rs.last();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int numCols = rsmd.getColumnCount();
+            int numRows =rs.getRow();
+            data=new Object[numRows][numCols];
+            int j = 0;
+            rs.beforeFirst();
+            while (rs.next()){
+                for (int i=0;i<numCols;i++){
+                    data[j][i]=rs.getObject(i+1);
+                }
+                j++;
+            }
+        } catch(Exception e){
+            System.out.println(e);
+        }
+
+        return data;
+
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -41,29 +70,16 @@ public class DataPresenter extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DataPresenter</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1> Data from databases </h1>");
-            
             try{
                 Class.forName("org.apache.derby.jdbc.ClientDriver");
                 Connection con =
                 DriverManager.getConnection("jdbc:derby://localhost:1527/myFirstDatabase", "root", "root");
                 
-                Statement query = con.createStatement();
+                Statement query = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = query.executeQuery("SELECT * FROM CUSTOMERS");
                 
-            
-                while(rs.next()) {
-                    out.println(" Id: "+ rs.getInt("ID")+ "<br>");
-                    out.println(" Name: "+ rs.getString("NAME")+ "<br>");
-                    out.println(" Balance: "+ rs.getString("BALANCE") + "<br><br>");
-                }
+                HttpSession ss = request.getSession();
+                ss.setAttribute("ResultSet", ResultSetToArray(rs));
 
                 con.commit();
                 con.close();
@@ -74,10 +90,7 @@ public class DataPresenter extends HttpServlet {
                 Logger.getLogger(DataPresenter.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            //out.println("<h1>Servlet DataPresenter at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            
+            response.sendRedirect("scroll.jsp");
         }
     }
 

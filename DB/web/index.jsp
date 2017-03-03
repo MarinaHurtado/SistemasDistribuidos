@@ -13,8 +13,12 @@
     </head>
     <body>
         <form action="DataPresenter" name="x">
-            <h1> Hello word of Databases! </h1>
-            <input type="submit" value="Show Data" />
+            <h1> Retrieve Database Records </h1>
+            <input type="submit" value="Retrieve Data" />
+            <%
+              HttpSession ss = request.getSession();
+              ss.setAttribute("Counter", 0);
+            %>
         </form>
     </body>
 </html>
