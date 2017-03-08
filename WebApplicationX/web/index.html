@@ -32,23 +32,109 @@ and open the template in the editor.
         <table border="1">
             <tbody>
                 <tr>
-                    <td id="uno"> 3 </td>
+                    <td id="uno"> 1 </td>
                     <td><input type="button" value="Cambiar 1" onclick="changeText('uno');"></td>
                 </tr>
                 <tr>
-                    <td><div id="dos"></div></td>
+                    <td><div id="dos"></div> 2 </td>
                     <td><input type="button" value="Cambiar 2" onclick="changeText('dos');"></td>
                 </tr>
             </tbody>
         </table>
-
+           
+        <hr>
         
         <div>TODO write content</div>
         <script>
             document.write("<p>Hola a todos </p>");
         </script>
-        
+         <hr>
         <img id="myimage" onclick="changeImage()" src="IMAGES/down.jpg" >
+         <hr>
+        <script>
+            var unObjeto = {
+                nombre:"Pedro",
+                annio: 1990
+            };
+            document.write("<br><br> El nombre del objeto es: " + unObjeto.nombre + "<br>");
+            document.write("Su año es: " + unObjeto.annio + "<br>");
         
+        </script>
+        <br>
+        <script>
+            var person=new Object();
+            person.firstname="Juan";
+            person.age=50;
+            person.aMethod= function(x){
+                person.age = person.age + x;
+            }
+            
+            person.aMethod(3);
+            document.write(person.firstname + " is " + person.age + " years old.");
+
+        </script>
+        <br><br>
+        <script>
+            function validar() {
+                var y=document.getElementById("mess");
+                y.innerHTML="";
+                try {
+                    var x=document.getElementById("demo").value;
+                    if(x=="") throw "empty";
+                    if(isNaN(x)) throw "not a number";
+                    if(x>10) throw "too high";
+                    if(x<5) throw "too low";
+                } catch(err) {
+                    y.innerHTML="Error: " + err + ".";
+                }
+            }
+        </script>
+        
+        <hr>
+        <br> Inserte un número entre 5 y 10 <br>
+        <input id="demo" type="text" name="txt" value="" />
+        <p id="mess"> </p>
+        <input type="button" value="Ok" onclick="validar()" />
+        
+        <hr>
+        
+        <script>
+            function increaseText(id){
+                document.getElementById(id).innerHTML=
+                document.getElementById(id).innerHTML.charAt(0)+
+                document.getElementById(id).innerHTML;
+            }
+       </script>
+       
+       <h1 id ="anyId1" onclick="increaseText('anyId1')">Click on this text!</h1>
+       <h1 id ="anyId2" onclick="increaseText('anyId2')">Click on this text!</h1>
+        
+       <hr>
+       <script>
+            function upperCase(id){
+                var text=document.getElementById(id);
+                text.value=text.value.toUpperCase();
+            }
+       </script>
+       
+       <input type="text" id="anyId3" onchange="upperCase('anyId3');">
+       
+       <hr>
+       
+       <script>
+            function eventMouseOver(obj) {
+                obj.innerHTML="ThankYou";
+            }
+            function eventMouseOut(obj){
+                obj.innerHTML="Mouse Over Me";
+            }
+        </script>
+        
+        <div onmouseover= "eventMouseOver(this)"
+            onmouseout="eventMouseOut(this)" >
+                Mouse Over Me
+       </div>
+
+
     </body>
 </html>
