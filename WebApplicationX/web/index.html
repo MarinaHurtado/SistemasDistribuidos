@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <script>
+            function changeText(elementId) {
+                var element=document.getElementById(elementId);
+                element.innerHTML="12345678910";
+             }
+             
+             function changeImage() {
+                element=document.getElementById('myimage');
+                if (element.src.match("down")) {
+                    element.src="IMAGES/up.jpg";
+                } else {
+                    element.src="IMAGES/down.jpg";
+                }
+            }
+            
+           </script> 
+        
+        <table border="1">
+            <tbody>
+                <tr>
+                    <td id="uno"> 3 </td>
+                    <td><input type="button" value="Cambiar 1" onclick="changeText('uno');"></td>
+                </tr>
+                <tr>
+                    <td><div id="dos"></div></td>
+                    <td><input type="button" value="Cambiar 2" onclick="changeText('dos');"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+        <div>TODO write content</div>
+        <script>
+            document.write("<p>Hola a todos </p>");
+        </script>
+        
+        <img id="myimage" onclick="changeImage()" src="IMAGES/down.jpg" >
+        
+    </body>
+</html>
