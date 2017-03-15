@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script>
+        function loadNewContent(id, target) {
+            var ajaxRequest;
+            if (window.XMLHttpRequest){
+                ajaxRequest=new XMLHttpRequest(); // IE7+, Firefox, Chrome, Opera, Safari
+            } else {
+                ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP"); // IE6, IE5
+            }
+            ajaxRequest.onreadystatechange = function(){
+                switch(ajaxRequest.readyState){
+                    case 1: document.getElementById("status1").innerHTML="status1";
+                        break;
+                    case 2: document.getElementById("status2").innerHTML="status2";
+                        break;
+                    case 3: document.getElementById("status3").innerHTML="status3";
+                        break;
+                }
+                if (ajaxRequest.readyState==4 && ajaxRequest.status==200){
+                    document.getElementById(id).innerHTML=ajaxRequest.responseText;
+                }
+            }
+            ajaxRequest.open("GET", target, true /*async*/);
+            ajaxRequest.send();
+        }
+        </script>
+        
+    </head>
+    <body>
+        <h1 id="status1"></h1>
+        <h1 id="status2"></h1>
+        <h1 id="status3"></h1>
+        <div id="resultado">TODO write content</div>
+        <input type="submit" value="OK" onclick="loadNewContent('resultado', 'archivo.txt')"/>
+        
+    </body>
+</html>
