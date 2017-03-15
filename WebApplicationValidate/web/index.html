@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="code.js"> </script>
+    </head>
+    <body> 
+        <!--
+        <form name="myForm"
+            action="nextpage.jsp"
+            onsubmit="return validateForm()"
+            method="post">
+            First name: <input type="text" name="fname"> <br />
+            <input type="submit" value="Submit">
+        </form>
+        -->
+        
+        <form name="formNextPage" action="nextpage.jsp" onsubmit="return validateForm();" method = "post">
+            
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First name</td>
+                        <td><input type="text" name="txtFirst" value="" onkeyup="validateName('txtFirst');" /></td>
+                    </tr>
+                    <tr>
+                        <td>Last name</td>
+                        <td><input type="text" name="txtFirst" value="" onkeyup="validateName('txtLast');" /></td>
+                    </tr>
+                    <tr>
+                        <td>E-mail</td>
+                        <td><input type="text" name="txtMail" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td><input type="radio" name="genderG" value="male" /> Male 
+                            <input type="radio" name="genderG" value="female" /> Female</td>
+                    </tr>
+                    <tr>
+                        <td>Country Region</td>
+                        <td><select name="ddCountry">
+                                <option>Aquí</option>
+                                <option>Allá</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <td>All the vaccines?</td>
+                        <td><input type="checkbox" name="vaccines" value="ON" /></td>
+                    </tr>
+                    <tr>
+                        <td>Additional comments</td>
+                        <td><textarea name="comments" rows="4" cols="20">
+ 
+                            </textarea></td>
+                    </tr>
+                    <tr>
+                        <td><input type="reset" value="Reset" name="btnReset" /></td>
+                        <td><input type="submit" value="Send" name="btnSend" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            
+        </form>
+        
+    </body>
+</html>
