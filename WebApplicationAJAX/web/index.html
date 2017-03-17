@@ -33,6 +33,10 @@ and open the template in the editor.
                     document.getElementById(id).innerHTML=ajaxRequest.responseText;
                 }
             }
+            //Para el GET
+            //ajaxRequest.open("GET", target+"?Name=Marina&Age=22", true /*async*/);
+            //ajaxRequest.send();
+            
             ajaxRequest.open("POST", target, true /*async*/);
             
             ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
