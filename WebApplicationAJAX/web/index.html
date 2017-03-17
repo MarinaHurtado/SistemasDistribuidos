@@ -19,6 +19,7 @@ and open the template in the editor.
                 ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP"); // IE6, IE5
             }
             ajaxRequest.onreadystatechange = function(){
+                /*** Clase pasada para ver que se hae todo lo que está en el switch (aunque no haya for) ***
                 switch(ajaxRequest.readyState){
                     case 1: document.getElementById("status1").innerHTML="status1";
                         break;
@@ -26,23 +27,30 @@ and open the template in the editor.
                         break;
                     case 3: document.getElementById("status3").innerHTML="status3";
                         break;
-                }
+                } 
+                */
                 if (ajaxRequest.readyState==4 && ajaxRequest.status==200){
                     document.getElementById(id).innerHTML=ajaxRequest.responseText;
                 }
             }
-            ajaxRequest.open("GET", target, true /*async*/);
+            ajaxRequest.open("GET", target+"?Name=Marina&Age=22", true /*async*/);
             ajaxRequest.send();
         }
         </script>
         
     </head>
     <body>
+       
+        <div id="resultado">TODO write content</div>
+         <!--
         <h1 id="status1"></h1>
         <h1 id="status2"></h1>
-        <h1 id="status3"></h1>
-        <div id="resultado">TODO write content</div>
+        <h1 id="status3"></h1> 
         <input type="submit" value="OK" onclick="loadNewContent('resultado', 'archivo.txt')"/>
+         
+        -->
+        <input type="submit" value="OK" onclick="loadNewContent('resultado', 'page1.jsp')"/>
+        
         
     </body>
 </html>
