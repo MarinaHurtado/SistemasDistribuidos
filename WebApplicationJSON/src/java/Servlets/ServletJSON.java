@@ -7,17 +7,17 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.simple.JSONObject;
 
 /**
  *
  * @author sdist
  */
-public class ServEdos extends HttpServlet {
+public class ServletJSON extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,23 +30,14 @@ public class ServEdos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json");
         try (PrintWriter out = response.getWriter()) {
-            
-            String str = request.getParameter("txtEdo");
-            int len = str.length();
-            String list[] = new String[4];
-
-            list[0] = "Campeche - Campeche <br>";
-            list[1] = "Coahuila - Saltillo <br>";
-            list[2] = "Chiapas - Tuxtla Guitiérrez <br>";
-            list[3] = "Chihuahua - Chihuahua <br>";
-            
-            for(String l : list){
-                if(l.substring(0, len).equals(str)){
-                  out.println(l); 
-                }
-            }
+            /* TODO output your page here. You may use following sample code. */
+            JSONObject jsonResponse = new JSONObject();
+            jsonResponse.put("field1", "value1");
+            jsonResponse.put("field2", "value2");
+            jsonResponse.put("field3", "value3");
+            out.write(jsonResponse.toString());
         }
     }
 

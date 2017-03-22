@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script>
+        function loadNewContent(id, target) {
+            var ajaxRequest;
+            if (window.XMLHttpRequest){
+                ajaxRequest=new XMLHttpRequest(); // IE7+, Firefox, Chrome, Opera, Safari
+            } else {
+                ajaxRequest=new ActiveXObject("Microsoft.XMLHTTP"); // IE6, IE5
+            }
+
+            ajaxRequest.onreadystatechange = function(){
+                if (ajaxRequest.readyState==4 && ajaxRequest.status==200){
+                    //var JSONenTexto = ajaxRequest.responseText;
+                    //alert(JSONenTexto);
+                    var JSONObject = JSON.parse(ajaxRequest.responseText);
+                    var txt = "field1: " + JSONObject.field1+
+                    " field2: "+ JSONObject.field2+
+                    " field3: "+ JSONObject.field3+
+                    "<br />";
+                    document.getElementById(id).innerHTML=txt;
+                }
+            }
+            ajaxRequest.open("POST", target, true /*async*/);
+            //GET no es necesario el header
+            ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); 
+            ajaxRequest.send(); //Aquí sí se ejecuta
+        }
+        </script>
+        
+    </head>
+    <body>
+        <div id="myJSON"> </div>
+        <input type="submit" value="Traer JSON" onclick="loadNewContent('myJSON', 'ServletJSON')" />
+        
+    </body>
+</html>
