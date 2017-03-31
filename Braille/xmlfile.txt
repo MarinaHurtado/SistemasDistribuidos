@@ -1,0 +1,14 @@
+<NewDataSet>
+  <Table>
+    <Name>Canada</Name>
+    <CountryCode>ca</CountryCode>
+    <Currency>Dollar</Currency>
+    <CurrencyCode>CAD</CurrencyCode>
+  </Table>
+  <Table>
+    <Name>Canada</Name>
+    <CountryCode>ca</CountryCode>
+    <Currency>Dollar</Currency>
+    <CurrencyCode>CAD</CurrencyCode>
+  </Table>
+</NewDataSet>
